@@ -1,0 +1,14 @@
+.Container {
+    width : 100%;
+    border-top: 1px solid #d1d8e4;
+}
+
+.Element {
+    margin : 0 auto;
+    text-align: center;
+}
+
+.Element2 {
+    margin : 0 auto;
+    text-align: center;
+}

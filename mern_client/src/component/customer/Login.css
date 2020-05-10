@@ -1,0 +1,19 @@
+.LoginTab {
+    width : 30%;
+    margin: 30px auto;
+}
+
+#LoginId {
+    width: 100%;
+}
+
+#LoginPw {
+    width: 100%;
+}
+
+.LoginBtn {
+    width : 100%;
+    background-color: gainsboro;
+    margin-top : 10px;
+    text-align: center;
+}

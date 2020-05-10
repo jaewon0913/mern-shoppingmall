@@ -1,0 +1,35 @@
+a {
+    text-decoration: none;
+    color : black;
+}
+
+.Container {
+    width: 100%;
+    border-bottom: 1px solid black;
+}
+
+.Search {
+    order : 2;
+    width : 880px;
+    text-align: center;
+    margin : 0 auto;
+}
+
+.Element {
+    width : 90%;
+    height : 60px;
+    margin : 10px auto;
+}
+
+.Weather {
+    height : 55px;
+    float : left;
+}
+
+.ShortCut {
+    height: 55px;
+    order : 1;
+    display: table-cell;
+    float : right;
+    vertical-align: bottom;
+}
