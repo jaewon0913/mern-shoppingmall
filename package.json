@@ -1,8 +1,8 @@
 {
-  "start": "node Server.js",
   "name": "mern_server",
   "version": "1.0.0",
   "scripts": {
+    "start": "yarn dev",
     "client": "cd ../mern_client && yarn start",
     "server": "nodemon Server.js",
     "dev": "concurrently --kill-others-on-fail \"yarn server\" \"yarn client\""
