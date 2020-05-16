@@ -29,6 +29,15 @@ app.use(bodyParser.urlencoded({ extended: true}));
 //  서버 엔드포인트 구현
 //const mernRoutes = express.Router();
 
+//  Build -> React Route
+if (process.env.NODE_ENV = "production") {
+    app.use(express.static(path.join(__dirname, "../mern_client/build")));
+}
+
+app.get("/", (req,res) => {
+    res.sendFile(path.join(__dirname, "../mern_client/build", "index.html"));
+});
+
 //  서버 접속 테스트 코드
 app.get('/api/test', (req,res) =>{
     res.send({message: 'Hello Express!'});

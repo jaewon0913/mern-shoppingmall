@@ -14,7 +14,7 @@ class Top extends Component {
     }
 
     callApi = async() => {
-        const response = await fetch('http://localhost:4000/api/top');
+        const response = await fetch('api/top');
         const body = await response.json();
         return body;
     }

@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "scripts": {
     "start": "yarn dev",
+    "heroku-postbuild": "cd ../mern_client && yarn install && yarn build",
     "client": "cd ../mern_client && yarn start",
     "server": "nodemon Server.js",
     "dev": "concurrently --kill-others-on-fail \"yarn server\" \"yarn client\""
