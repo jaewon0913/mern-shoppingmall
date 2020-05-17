@@ -2,7 +2,7 @@
   "name": "mern_server",
   "version": "1.0.0",
   "scripts": {
-    "start": "yarn dev",
+    "start": "yarn start",
     "heroku-postbuild": "cd ../mern_client && yarn install && yarn build",
     "client": "cd ../mern_client && yarn start",
     "server": "nodemon Server.js",

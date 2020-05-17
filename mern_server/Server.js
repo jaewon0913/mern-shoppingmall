@@ -1,4 +1,5 @@
 const express = require('express'); //  node.express 호출
+const path = require('path');
 const fs = require('fs'); // filesystem??
 const app = express();  //  express를 app이란 변수로 사용
 const bodyParser = require('body-parser');  //  body-parser 사용(node.js 본문 구문 분석 미들웨어)
