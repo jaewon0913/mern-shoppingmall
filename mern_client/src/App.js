@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter as BrowserRouter } from 'react-router-dom';
+import { BrowserRouter} from 'react-router-dom';
 
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 
@@ -8,52 +8,64 @@ import Navigation from './layout/Navigation';
 import Bottom from './layout/Bottom';
 import Routers from './route/Router';
 
-
-import logo from "./umc.jpg";
-
-import List from "./component/manager/List";
-import Update from "./component/manager/Update";
-import Product from "./component/manager/Product";
+import Manager from './layout/Manager';
 
 class App extends Component {
+  constructor(props){
+    super(props);
+
+    this.state = {
+      id: ''
+    };
+
+    this.initializeUserInfo = this.initializeUserInfo.bind(this);
+    this.handleLogout = this.handleLogout.bind(this);
+  }
+
+  initializeUserInfo = async() => {
+    const loggedUserId = window.sessionStorage.getItem('loggedUserId');
+    console.log("appHeaderGetId :" + loggedUserId);
+    if(!loggedUserId){
+        return;
+    } else {
+        this.setState({
+          id : loggedUserId
+        })
+        console.log("appsetHeaderId: " + this.state.id);
+    }
+  }
+
+  handleLogout = () => {
+    console.log('로그아웃 버튼 눌림');
+    window.sessionStorage.clear();
+    window.location.replace('/about');
+  }
+
+  componentDidMount() {
+    this.initializeUserInfo();
+  }
+
   render() {
-    return (
-      <BrowserRouter>
-        <div className = "Layout">
-          <Header />
-          <Navigation />
-              <Routers />
-          <Bottom />
-        </div>
-      </BrowserRouter>
-      // <Router>
-      //   <div className="container">
-      //     <nav className="navbar navbar-expand-lg navbar-light bg-light">
-      //       <a className="navbar-brand" href="#" target="_blank">
-      //         <img src={logo} width="30" height="30" alt="#" />
-      //       </a>
-      //       <Link to="/" className="navbar-brand">MERN 관리자 화면</Link>
-      //       <div className="collpase navbar-collapse">
-      //         <ul className="navbar-nav mr-auto">
-      //           <li className="navbar-item">
-      //             <Link to="/product" className="nav-link">물품 관리</Link>
-      //           </li>
-      //           <li className="navbar-item">
-      //             <Link to="/member" className="nav-link">회원 관리</Link>
-      //           </li>
-      //           <li className="navbar-item">
-      //             <Link to="/order" className="nav-link">주문 관리</Link>
-      //           </li>
-      //         </ul>
-      //       </div>
-      //     </nav>
-      //     <br/>
-      //     <Route path="/" exact component={List} />
-      //     <Route path="/update/:id" component={Update} />
-      //     <Route path="/product" component={Product} />
-      //   </div>
-      // </Router>
-    );
+    const { id } = this.state;
+
+    if(id !== 'admin'){
+      return(
+        <BrowserRouter>
+          <div className = "Layout">
+            <Header />
+            <Navigation />
+                <Routers />
+            <Bottom />
+          </div>
+        </BrowserRouter>
+      );
+    } else {
+      return(
+        <BrowserRouter>
+            <Manager />
+        </BrowserRouter>
+      );
+    }
   }
 }
 

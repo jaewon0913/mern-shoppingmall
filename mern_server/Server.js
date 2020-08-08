@@ -1,5 +1,5 @@
 const express = require('express'); //  node.express 호출
-const path = require('path');
+const path = require('path'); // Directory 경로 작업 모듈 호출
 const fs = require('fs'); // filesystem??
 const app = express();  //  express를 app이란 변수로 사용
 const bodyParser = require('body-parser');  //  body-parser 사용(node.js 본문 구문 분석 미들웨어)
@@ -25,15 +25,15 @@ connection.connect();
 
 app.use(cors());
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true}));
+app.use(bodyParser.urlencoded({ extended: false }));
 
 //  서버 엔드포인트 구현
 //const mernRoutes = express.Router();
 
 //  Build -> React Route
-if (process.env.NODE_ENV = "production") {
-    app.use(express.static(path.join(__dirname, "../mern_client/build")));
-}
+// if (process.env.NODE_ENV = "production") {
+//     app.use(express.static(path.join(__dirname, "../mern_client/build")));
+// }
 
 app.get("/", (req,res) => {
     res.sendFile(path.join(__dirname, "../mern_client/build", "index.html"));
@@ -51,6 +51,26 @@ app.get('/api/top', (req,res) =>{
         sql,
         (err,rows,fields) => {
             res.send(rows);
+    });
+});
+
+app.post('/api/login', (req,res) => {
+    let username = req.body.userid;
+    let password = req.body.userpw;
+
+    var sql = 'SELECT * FROM mern_member WHERE mem_userid=? AND mem_password=? ';
+    
+    connection.query(sql, [username, password], (err, results, fields) => {
+
+        if (err) console.log('mysql 에러');
+
+        if (results.length === 0) {  //  일치 회원이 없을 경우
+            res.send(JSON.stringify(null));
+        } else {
+            var json = JSON.stringify(results[0]);
+            var userinfo = JSON.parse(json);
+            res.send(userinfo);
+        }
     });
 });
 

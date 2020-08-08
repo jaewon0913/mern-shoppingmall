@@ -2,7 +2,7 @@
   "name": "mern_server",
   "version": "1.0.0",
   "scripts": {
-    "start": "yarn start",
+    "start": "yarn dev",
     "heroku-postbuild": "cd ../mern_client && yarn install && yarn build",
     "client": "cd ../mern_client && yarn start",
     "server": "nodemon Server.js",
@@ -10,10 +10,14 @@
   },
   "dependencies": {
     "body-parser": "^1.19.0",
+    "cookie-parser": "^1.4.5",
     "cors": "^2.8.5",
     "express": "^4.17.1",
+    "express-session": "^1.17.1",
     "mysql": "^2.18.1",
     "nodemon": "^2.0.3",
+    "passport": "^0.4.1",
+    "passport-local": "^1.0.0",
     "yarn": "^1.22.4"
   },
   "devDependencies": {
